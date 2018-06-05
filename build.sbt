@@ -17,10 +17,6 @@ libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.3.0"
 libraryDependencies += "org.apache.spark" %% "spark-streaming" % "2.3.0" % "provided"
 // https://mvnrepository.com/artifact/org.apache.spark/spark-mllib
 libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.3.0"
-// https://mvnrepository.com/artifact/org.apache.hbase/hbase
-libraryDependencies += "org.apache.hbase" % "hbase" % "1.2.6" pomOnly()
-// https://mvnrepository.com/artifact/com.typesafe.akka/akka-http
-libraryDependencies += "com.typesafe.akka" %% "akka-http" % "10.1.1"
 // https://mvnrepository.com/artifact/org.json4s/json4s-native
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.5.4"
 
