@@ -1,31 +1,28 @@
 import java.io._
-import java.time.Clock
 
 import org.apache.spark._
-import org.apache.spark.rdd.RDD
-import org.apache.spark.sql
 import page._
 
 object App2 {
   def main(args: Array[String]): Unit = {
     val start = System.currentTimeMillis()
-    run1()
+    run2()
     val end = System.currentTimeMillis()
     println("耗时:" + (end - start))
   }
 
-  def run1() = {
+  private def run1() = {
     // 读取并解析 pagelinks
-    val readPath = "data/links100M.json"
+    val readPath = "data/data.json"
     // 设置系数
-    val count = 50
+    val count = 10
     val alpha = 0.15
     val data = readAllPages(readPath)
 
     // 设置配置
     val conf = new SparkConf()
-      .setAppName("wordCount")
-      .setMaster("local")
+      .setAppName("pageRank")
+      .setMaster("local[4]")
     // 设置上下文
     val sc = new SparkContext(conf)
     sc.setLogLevel("ERROR")
@@ -56,20 +53,21 @@ object App2 {
     println(writepath)
   }
 
-  def run2() = {
+  private def run2() = {
     // 读取并解析 pagelinks
-    val readPath = "data/links100M.json"
+    val readPath = "data/links10000.json"
     // 设置系数
     val count = 100
     val alpha = 0.15
     val data = readAllPages(readPath)
     // string to int
     val (data2, stringMap, intMap) = convertToInt(data)
+    val pageNum = intMap.size
 
     // 设置配置
     val conf = new SparkConf()
-      .setAppName("wordCount")
-      .setMaster("local")
+      .setAppName("pageRank")
+      .setMaster("local[4]")
     // 设置上下文
     val sc = new SparkContext(conf)
     sc.setLogLevel("ERROR")
@@ -83,7 +81,7 @@ object App2 {
     val sortedRanks = newRanks.sortBy(_._2).collect()
 
     val finalRanks = sortedRanks.map {
-      case (id, rank) => (stringMap.get(id).get, rank)
+      case (id, rank) => (stringMap(id), rank)
     }
     // 存储排名
     val writepath = "data/rank-" + finalRanks.length + "-"  + count.toString() + "-" + getTimeStamp() + ".txt"

@@ -19,4 +19,7 @@ libraryDependencies += "org.apache.spark" %% "spark-streaming" % "2.3.0" % "prov
 libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.3.0"
 // https://mvnrepository.com/artifact/org.json4s/json4s-native
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.5.4"
+// https://mvnrepository.com/artifact/org.scalatest/scalatest
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % Test
+
 
