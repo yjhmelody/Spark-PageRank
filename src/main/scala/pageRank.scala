@@ -1,3 +1,5 @@
+package com.yjhmelody
+
 import java.time._
 
 import org.apache.spark.rdd.RDD
@@ -7,7 +9,6 @@ import org.json4s.native.JsonMethods._
 import scala.collection.mutable.{ListBuffer, Map}
 import scala.io.Source
 import scala.util.parsing.json.JSON
-
 
 case class Link(url:String, links: List[String])
 case class ALlPages(pageLinks: List[Link])

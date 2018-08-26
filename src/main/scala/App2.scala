@@ -1,7 +1,9 @@
+package com.yjhmelody
+
 import java.io._
 
+import com.yjhmelody.page._
 import org.apache.spark._
-import page._
 
 object App2 {
   def main(args: Array[String]): Unit = {
@@ -55,9 +57,9 @@ object App2 {
 
   private def run2() = {
     // 读取并解析 pagelinks
-    val readPath = "data/links10000.json"
+    val readPath = "data/data.json"
     // 设置系数
-    val count = 100
+    val count = 10
     val alpha = 0.15
     val data = readAllPages(readPath)
     // string to int
